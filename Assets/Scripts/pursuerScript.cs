@@ -7,11 +7,9 @@ public class pursuerScript : MonoBehaviour
 {
     CapsuleCollider detection;
     NavMeshAgent agent;
-    GameObject speaker;
+    public GameObject speaker;
+    public Transform target;
     private int id = 0;
-    //private bool viablePatrol;
-    public bool found;
-    //private Vector3[] positions = new Vector3[4];
     public bool suspect;
     public bool suspectPlay;
     public bool found;
@@ -21,53 +19,41 @@ public class pursuerScript : MonoBehaviour
     {
         detection = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
-        GameObject speaker = GameObject.FindGameObjectWithTag("Speaker");
         suspect = false;
         suspectPlay = false;
         found = false;
-        print(gameObject.name);
-        if(gameObject.name == "1"){
         foundPlay = false;
-        if(gameObject.CompareTag("1")){
+        print(gameObject.name);
+        if (gameObject.CompareTag("1"))
+        {
             //set the path to 0 
             id = 1;
             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap0Pref"), 1f);
             agent.destination = new Vector3(Random.Range(3, 22), .5f, Random.Range(-22, -3));
         }
-        else if(gameObject.name =="2"){
+        else if (gameObject.CompareTag("2"))
+        {
             id = 2;
             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap1Pref"), 1f);
             agent.destination = new Vector3(Random.Range(-22, -3), .5f, Random.Range(-22, -3));
-
         }
-        else if(gameObject.name =="3"){
+        else if (gameObject.CompareTag("3"))
+        {
             id = 3;
             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap2Pref"), 1f);
             agent.destination = new Vector3(Random.Range(-22, -3), .5f, Random.Range(3, 22));
-
         }
-        else if(gameObject.name =="4"){
+        else if (gameObject.CompareTag("4"))
+        {
             id = 4;
-        else if(gameObject.CompareTag("2"))
-        {
-             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap1Pref"), 1f);
-
-        }else if(gameObject.CompareTag("3"))
-        {
-             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap2Pref"), 1f);
-
-        }else if(gameObject.CompareTag("4"))
-        {
             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap3Pref"), 1f);
             agent.destination = new Vector3(Random.Range(3, 22), .5f, Random.Range(3, 22));
-
         }
-        //viablePatrol = true;
     }
+        
 
     void Update()
     {
-        agent = GetComponent<NavMeshAgent>();
         if (found)
         {
             if (foundPlay == false)
@@ -77,6 +63,7 @@ public class pursuerScript : MonoBehaviour
             }
             suspect = false;
             detection.radius = 9.0f;
+            agent.destination = target.position;
         }
         
         if (suspect)
@@ -98,12 +85,10 @@ public class pursuerScript : MonoBehaviour
                 else if (id == 2)
                 {
                     agent.destination = new Vector3(Random.Range(-22, -3), .5f, Random.Range(-22, -3));
-
                 }
                 else if (id == 3)
                 {
                     agent.destination = new Vector3(Random.Range(-22, -3), .5f, Random.Range(3, 22));
-
                 }
                 else if (id == 4)
                 {

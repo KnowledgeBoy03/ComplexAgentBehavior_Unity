@@ -30,8 +30,8 @@ public class evaderMoving : MonoBehaviour
         if(Input.GetKey("left shift")){
             if(speed <10){
                 speed += .2f;
-                meep.radius += 3f;
-                Instantiate(bolt, transform.position, transform.rotation);
+                meep.radius = 4f;
+                Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
             }
         }else{
             if(speed>5){
@@ -39,7 +39,5 @@ public class evaderMoving : MonoBehaviour
                 meep.radius =1f;
             }
         }
-        
-        
     }
 }

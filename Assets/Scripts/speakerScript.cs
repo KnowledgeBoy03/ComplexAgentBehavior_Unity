@@ -16,12 +16,6 @@ public class speakerScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Reveal()
     {
         StartCoroutine(ActualReveal());
