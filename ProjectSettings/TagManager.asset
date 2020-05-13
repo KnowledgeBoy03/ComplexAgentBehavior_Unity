@@ -7,6 +7,10 @@ TagManager:
   - Pursuer
   - Evader
   - Speaker
+  - 1
+  - 2
+  - 3
+  - 4
   layers:
   - Default
   - TransparentFX

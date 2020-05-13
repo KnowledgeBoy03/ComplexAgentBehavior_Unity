@@ -11,14 +11,14 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: Cap0Pref
+    cost: 2
+  - name: Cap1Pref
+    cost: 3
+  - name: Cap2Pref
+    cost: 3
+  - name: Cap3Pref
+    cost: 3
   - name: 
     cost: 1
   - name: 
