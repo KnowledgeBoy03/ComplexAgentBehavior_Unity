@@ -8,7 +8,7 @@ public class evaderMoving : MonoBehaviour
     [Header("Settings")]
 	public float speed = 5f;
     private CharacterController cc;
-
+    public Rigidbody bolt;
     public SphereCollider meep; 
 
     void Start()
@@ -31,6 +31,7 @@ public class evaderMoving : MonoBehaviour
             if(speed <10){
                 speed += .2f;
                 meep.radius += 3f;
+                Instantiate(bolt, transform.position, transform.rotation);
             }
         }else{
             if(speed>5){
