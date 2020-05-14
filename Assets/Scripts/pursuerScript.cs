@@ -32,9 +32,9 @@ public class pursuerScript : MonoBehaviour
         found = false;
         foundPlay = false;
         print(gameObject.name);
+        print(gameObject.tag);
         if (gameObject.CompareTag("1"))
         {
-            //set the path to 0 
             id = 1;
             agent.SetAreaCost(NavMesh.GetAreaFromName("Cap0Pref"), 1f);
             agent.destination = new Vector3(Random.Range(3, 22), .5f, Random.Range(-22, -3));
@@ -89,6 +89,7 @@ public class pursuerScript : MonoBehaviour
             suspectPlay = true;
             speaker.GetComponent<speakerScript>().Respond();
             suspect = true;
+            transmission = false;
         }
 
         if (ambush)
@@ -96,6 +97,7 @@ public class pursuerScript : MonoBehaviour
             foundPlay = true;
             speaker.GetComponent<speakerScript>().Ready();
             found = true;
+            ambush = false;
         }
 
         if (!found)
@@ -131,7 +133,8 @@ public class pursuerScript : MonoBehaviour
             suspect = false;
             agent.destination = other.transform.position;
         }
-        else if (other.CompareTag("Bolt"))
+        
+        if (other.CompareTag("Bolt"))
         {
             if (found == false)
             {
@@ -144,12 +147,14 @@ public class pursuerScript : MonoBehaviour
         {
             if (found == true && other.GetComponent<pursuerScript>().found == false)
             {
-                other.gameObject.GetComponent<pursuerScript>().ambush = true;
+                other.gameObject.GetComponent<pursuerScript>().found = true;
+                other.gameObject.GetComponent<pursuerScript>().foundPlay = true;
             }
             else if (suspect == true && other.GetComponent<pursuerScript>().suspect == false)
             {
                 other.gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
-                other.gameObject.GetComponent<pursuerScript>().transmission = true;
+                other.gameObject.GetComponent<pursuerScript>().suspect = true;
+                other.gameObject.GetComponent<pursuerScript>().suspectPlay = true;
             }
         }
     }
@@ -166,12 +171,13 @@ public class pursuerScript : MonoBehaviour
         {
             if (found == true && other.GetComponent<pursuerScript>().found == false)
             {
-                other.gameObject.GetComponent<NavMeshAgent>().destination = agent.destination;
                 other.gameObject.GetComponent<pursuerScript>().found = true;
+                other.gameObject.GetComponent<pursuerScript>().foundPlay = true;
             }
             else if (suspect == true && other.GetComponent<pursuerScript>().suspect == false)
             {
-                other.gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
+                other.gameObject.GetComponent<pursuerScript>().suspect = true;
+                other.gameObject.GetComponent<pursuerScript>().suspectPlay = true;
             }
         }
     }

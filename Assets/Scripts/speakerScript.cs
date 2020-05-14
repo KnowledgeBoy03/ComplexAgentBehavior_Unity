@@ -65,22 +65,22 @@ public class speakerScript : MonoBehaviour
         range.enabled = true;
         this.gameObject.SetActive(true);
         Alarm();
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(10);
         if (!p1.GetComponent<pursuerScript>().found)
         {
             p1.GetComponent<pursuerScript>().ambush = true;
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1);
         if (!p2.GetComponent<pursuerScript>().found)
         {
             p2.GetComponent<pursuerScript>().ambush = true;
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1);
         if (!p3.GetComponent<pursuerScript>().found)
         {
             p3.GetComponent<pursuerScript>().ambush = true;
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1);
         if (!p4.GetComponent<pursuerScript>().found)
         {
             p4.GetComponent<pursuerScript>().ambush = true;
@@ -93,22 +93,22 @@ public class speakerScript : MonoBehaviour
         range.enabled = true;
         this.gameObject.SetActive(true);
         BackUp();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         if (!p1.GetComponent<pursuerScript>().suspect)
         {
             p1.GetComponent<pursuerScript>().transmission = true;
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1);
         if (!p2.GetComponent<pursuerScript>().suspect)
         {
             p2.GetComponent<pursuerScript>().transmission = true;
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1);
         if (!p3.GetComponent<pursuerScript>().suspect)
         {
             p3.GetComponent<pursuerScript>().transmission = true;
         }
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1);
         if (!p4.GetComponent<pursuerScript>().suspect)
         {
             p4.GetComponent<pursuerScript>().transmission = true;

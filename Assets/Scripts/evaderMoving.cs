@@ -27,7 +27,7 @@ public class evaderMoving : MonoBehaviour
 		Vector3 forward = transform.forward * v * speed * Time.deltaTime;
 		Vector3 right = transform.right * h * speed * Time.deltaTime;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward + right), 0.05f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward + right), 0.025f);
 
 		cc.Move(forward + right);
         if(Input.GetKey("left shift")){
