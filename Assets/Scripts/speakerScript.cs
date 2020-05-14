@@ -9,6 +9,8 @@ public class speakerScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip found;
     public AudioClip suspect;
+    public bool reveal;
+    public bool warning;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,14 @@ public class speakerScript : MonoBehaviour
 
     public void Reveal()
     {
+        reveal = true;
         StartCoroutine(ActualReveal());
+    }
+
+    public void Warning()
+    {
+        warning = true;
+        StartCoroutine(ActualWarning());
     }
 
     public void BackUp()
@@ -37,5 +46,28 @@ public class speakerScript : MonoBehaviour
         Alarm();
         yield return new WaitForSeconds(5);
         range.enabled = false;
+    }
+
+    IEnumerator ActualWarning()
+    {
+        range.enabled = true;
+        BackUp();
+        yield return new WaitForSeconds(5);
+        range.enabled = false;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("1") || other.CompareTag("2") || other.CompareTag("3") || other.CompareTag("4"))
+        {
+            if (warning)
+            {
+                other.GetComponent<pursuerScript>().suspect = true;
+            }
+            if (reveal)
+            {
+                other.GetComponent<pursuerScript>().found = true;
+            }
+        }
     }
 }

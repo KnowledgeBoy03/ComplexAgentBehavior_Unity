@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class pursuerScript : MonoBehaviour
 {
-    CapsuleCollider detection;
+    SphereCollider detection;
     NavMeshAgent agent;
     public GameObject speaker;
     public Transform target;
@@ -17,7 +17,7 @@ public class pursuerScript : MonoBehaviour
 
     void Start()
     {
-        detection = GetComponent<CapsuleCollider>();
+        detection = GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
         suspect = false;
         suspectPlay = false;
@@ -62,19 +62,21 @@ public class pursuerScript : MonoBehaviour
                 foundPlay = true;
             }
             suspect = false;
-            detection.radius = 9.0f;
+            detection.radius = 10.0f;
             agent.destination = target.position;
         }
         
         if (suspect)
         {
+            detection.radius = 7.5f;
             if (suspectPlay == false)
             {
-                speaker.GetComponent<speakerScript>().BackUp();
+                speaker.GetComponent<speakerScript>().Warning();
                 suspectPlay = true;
             }
         }
-        else if (!found)
+
+        if (!found)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
@@ -116,11 +118,10 @@ public class pursuerScript : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Pursuer"))
+        if (other.CompareTag("1") || other.CompareTag("2") || other.CompareTag("3") || other.CompareTag("4"))
         {
             if (found == true && other.GetComponent<pursuerScript>().found == false)
             {
-                other.gameObject.GetComponent<CapsuleCollider>().radius = 9.0f;
                 other.gameObject.GetComponent<NavMeshAgent>().destination = agent.destination;
                 other.gameObject.GetComponent<pursuerScript>().found = true;
             }
@@ -129,11 +130,27 @@ public class pursuerScript : MonoBehaviour
                 other.gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
             }
         }
+    }
 
-        if (other.CompareTag("Speaker"))
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Evader"))
         {
-            agent.destination = other.gameObject.GetComponent<speakerScript>().evaderPos.position;
             found = true;
+            suspect = false;
+            agent.destination = other.transform.position;
+        }
+        if (other.CompareTag("1") || other.CompareTag("2") || other.CompareTag("3") || other.CompareTag("4"))
+        {
+            if (found == true && other.GetComponent<pursuerScript>().found == false)
+            {
+                other.gameObject.GetComponent<NavMeshAgent>().destination = agent.destination;
+                other.gameObject.GetComponent<pursuerScript>().found = true;
+            }
+            else if (suspect == true && other.GetComponent<pursuerScript>().suspect == false)
+            {
+                other.gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
+            }
         }
     }
 

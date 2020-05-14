@@ -958,6 +958,8 @@ MonoBehaviour:
   audioSource: {fileID: 85382944}
   found: {fileID: 8300000, guid: 7ab5eea56fa94f9438c1ac9544f0ddca, type: 3}
   suspect: {fileID: 8300000, guid: 9677c9b177cd6404a8fde4c21348a154, type: 3}
+  reveal: 0
+  warning: 0
 --- !u!82 &85382944
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1453,7 +1455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bolt: {fileID: 132095126235148637, guid: 6469ea4281e4d5846a84fb99a2a66763, type: 3}
+  bolt: {fileID: 3992878632796163787, guid: 6469ea4281e4d5846a84fb99a2a66763, type: 3}
   meep: {fileID: 0}
 --- !u!135 &98988352
 SphereCollider:
@@ -7246,6 +7248,7 @@ GameObject:
   - component: {fileID: 685425433}
   - component: {fileID: 685425437}
   - component: {fileID: 685425436}
+  - component: {fileID: 685425438}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: 2
@@ -7275,9 +7278,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685425431}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -7366,6 +7369,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &685425438
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685425431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &695471795
 GameObject:
   m_ObjectHideFlags: 0
@@ -10136,6 +10152,7 @@ GameObject:
   - component: {fileID: 997545808}
   - component: {fileID: 997545812}
   - component: {fileID: 997545811}
+  - component: {fileID: 997545813}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: 3
@@ -10165,9 +10182,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997545806}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -10256,6 +10273,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &997545813
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997545806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &999580478
 GameObject:
   m_ObjectHideFlags: 0
@@ -14044,6 +14074,7 @@ GameObject:
   - component: {fileID: 1539981360}
   - component: {fileID: 1539981364}
   - component: {fileID: 1539981363}
+  - component: {fileID: 1539981365}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: 4
@@ -14073,9 +14104,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539981358}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -14164,6 +14195,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &1539981365
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539981358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1548841865
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class evaderMoving : MonoBehaviour
     [Header("Settings")]
 	public float speed = 5f;
     private CharacterController cc;
-    public Rigidbody bolt;
+    public GameObject bolt;
     public SphereCollider meep; 
 
     void Start()
@@ -31,7 +31,8 @@ public class evaderMoving : MonoBehaviour
             if(speed <10){
                 speed += .2f;
                 meep.radius = 4f;
-                Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
+                GameObject trail = Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
+                Destroy(trail, 5);
             }
         }else{
             if(speed>5){
