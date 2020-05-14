@@ -12,6 +12,10 @@ public class pursuerScript : MonoBehaviour
     private int id = 0;
     public bool suspect;
     public bool suspectPlay;
+    public bool transmission;
+    public bool transmissionPlay;
+    public bool ambush;
+    public bool ambushPlay;
     public bool found;
     public bool foundPlay;
 
@@ -21,6 +25,10 @@ public class pursuerScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         suspect = false;
         suspectPlay = false;
+        transmission = false;
+        transmissionPlay = false;
+        ambush = false;
+        ambushPlay = false;
         found = false;
         foundPlay = false;
         print(gameObject.name);
@@ -76,6 +84,20 @@ public class pursuerScript : MonoBehaviour
             }
         }
 
+        if (transmission)
+        {
+            suspectPlay = true;
+            speaker.GetComponent<speakerScript>().Respond();
+            suspect = true;
+        }
+
+        if (ambush)
+        {
+            foundPlay = true;
+            speaker.GetComponent<speakerScript>().Ready();
+            found = true;
+        }
+
         if (!found)
         {
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -122,12 +144,12 @@ public class pursuerScript : MonoBehaviour
         {
             if (found == true && other.GetComponent<pursuerScript>().found == false)
             {
-                other.gameObject.GetComponent<NavMeshAgent>().destination = agent.destination;
-                other.gameObject.GetComponent<pursuerScript>().found = true;
+                other.gameObject.GetComponent<pursuerScript>().ambush = true;
             }
             else if (suspect == true && other.GetComponent<pursuerScript>().suspect == false)
             {
                 other.gameObject.GetComponent<NavMeshAgent>().destination = transform.position;
+                other.gameObject.GetComponent<pursuerScript>().transmission = true;
             }
         }
     }

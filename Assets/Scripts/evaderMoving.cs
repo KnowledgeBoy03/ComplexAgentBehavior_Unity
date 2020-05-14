@@ -6,7 +6,7 @@ public class evaderMoving : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Settings")]
-	public float speed = 5f;
+	public float speed = 2.5f;
     private CharacterController cc;
     public GameObject bolt;
     public SphereCollider meep;
@@ -26,6 +26,8 @@ public class evaderMoving : MonoBehaviour
 
 		Vector3 forward = transform.forward * v * speed * Time.deltaTime;
 		Vector3 right = transform.right * h * speed * Time.deltaTime;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward + right), 0.05f);
 
 		cc.Move(forward + right);
         if(Input.GetKey("left shift")){
