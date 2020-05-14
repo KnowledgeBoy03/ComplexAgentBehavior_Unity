@@ -9,7 +9,8 @@ public class evaderMoving : MonoBehaviour
 	public float speed = 5f;
     private CharacterController cc;
     public GameObject bolt;
-    public SphereCollider meep; 
+    public SphereCollider meep;
+    private int i = 0;
 
     void Start()
     {
@@ -28,11 +29,24 @@ public class evaderMoving : MonoBehaviour
 
 		cc.Move(forward + right);
         if(Input.GetKey("left shift")){
+            i++;
             if(speed <10){
+                print("sprinting");
                 speed += .2f;
                 meep.radius = 4f;
-                GameObject trail = Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
-                Destroy(trail, 5);
+                if (i%20 == 00) {
+                    GameObject trail = Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
+                    Destroy(trail, 5);
+                }
+
+            }
+            else
+            {
+                if (i % 20 == 00)
+                {
+                    GameObject trail = Instantiate(bolt, (transform.position - transform.forward), transform.rotation);
+                    Destroy(trail, 5);
+                }
             }
         }else{
             if(speed>5){
